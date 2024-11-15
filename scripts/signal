@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo iw wlan0 link|head -n4 |tail -n1|awk '{print $2}'

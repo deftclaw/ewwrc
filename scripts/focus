@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require_relative 'lambdas.rb'
+
+LENGTH_LIMIT = ARGV[0].to_i > 0 ? ARGV[0].to_i : 99
+
+puts LD[:window_a].call["title"].chars.first(LENGTH_LIMIT).join('')

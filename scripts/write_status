@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'active_support/core_ext/hash/keys'
+require_relative 'lambdas'
+
+SET = {
+  nil => "none\n",
+  active: "active\n",
+  focus: "focus\n"
+}
+
+def write_status
+  status     = Array.new(10)     # A place to temporarily store statues
+  workspaces = '/tmp/workspace'  # A place to store the readable statuses
+
+  Dir.exist?(workspaces) || Dir.mkdir(workspaces)  # Ensure the directory exists for writing
+
+  # Set active workspaces to :active
+  # Workspace numbers start with 1 (arrays start w/ 0)
+  LD[:actives].(LD[:clients].()).each do |idx|
+    status[idx - 1] = :active
+  end
+
+  status[LD[:focus].() - 1] = :focus  # Set the focused workspace to :focus
+
+  status.each_with_index do |val, idx|
+    # Add 1 to the array index because workspaces start with 1
+    File.write("/tmp/workspace/#{idx + 1}", SET[val], mode: 'a')
+  end
+end
+
+loop do
+  write_status
+  sleep 0.25
+end

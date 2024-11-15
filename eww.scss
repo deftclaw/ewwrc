@@ -1,0 +1,201 @@
+$surface-darkgrey:  #1D1F21;
+$surface-fg:        #FCFCFC;
+$surface-lightgrey: #3D464E;
+$surface-grey:      #2B3238;
+$surface-red:       #9B111E;
+$surface-green:     #26C06D;
+
+* { all: unset; }
+
+.power_menu {
+  background-color: $surface-grey;
+  border-radius: 1em;
+}
+
+.pm_button {
+  border-radius: 0.25em;
+  color: $surface-fg;
+  font-size: 4em;
+  
+  &:hover {
+    background-color: $surface-lightgrey;
+    color: $surface-green;
+  }
+}
+
+.pm_pwr_button {
+  border-radius: 0.25em;
+  color: $surface-fg;
+  font-size: 4em;
+  
+  &:hover {
+    background-color: $surface-red;
+    color: $surface-darkgrey;
+  }
+}
+
+.pm_lock-btn {
+  border-radius: 0.25em;
+  color: $surface-fg;
+  font-size: 2em;
+
+  &:hover {
+    background-color: $surface-lightgrey;
+    color: $surface-grey;
+  }
+}
+
+.pm_close-btn {
+  border-radius: 0.25em;
+  color: $surface-fg;
+  font-size: 2em;
+
+  &:hover {
+    background-color: $surface-lightgrey;
+    color: $surface-red;
+  }
+}
+
+.btns-box {
+  font-size: 3em;
+
+  button {
+    background-color: rgba($surface-darkgrey, 0.3);
+    border-radius: 0.1em;
+
+    &:hover {
+      transition: 200ms linear background-color, border-radius;
+      background-color: rgba($surface-lightgrey, 0.6);
+    }
+
+    &:first-child {
+      color: rgba($surface-red, 0.8);
+    }
+  }
+}
+
+.clock {
+  font-weight: 600;
+  padding-left: 0.5em;
+}
+
+.close-btn {
+  font-size: 2em;
+  color: $surface-fg;
+
+  &:hover {
+    color: $surface-red;
+  }
+}
+
+.center-bar {
+}
+
+.left-bar {
+  background-color: rgba($surface-grey, 0.72);
+  border-radius: 4px;
+  color: #FCFCFC;
+  margin-left: 0.5em;
+  margin-right: 0.25em;
+  margin-top: 0.25em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+}
+
+.left-wsm-bar {
+  background-color: rgba($surface-grey, 0.72);
+  border-radius: 4px;
+  color: #FCFCFC;
+  margin-left: 0.25em;
+  margin-top: 0.25em;
+  padding-left: 0.25em;
+  padding-right: 0.25em;
+}
+
+.right-bar {
+  background-color: rgba($surface-darkgrey, 0.72);
+  border-radius: 4px;
+  color: #FCFCFC;
+  margin-left: 0.25em;
+  margin-right: 0.5em;
+  margin-top: 0.25em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+}
+
+.right-wsm-bar {
+  background-color: rgba($surface-darkgrey, 0.72);
+  border-radius: 4px;
+  color: #FCFCFC;
+  margin-left: 0.25em;
+  margin-right: 0.25em;
+  margin-top: 0.25em;
+  padding-left: 0.25em;
+  padding-right: 0.25em;
+}
+
+.tray-bar {
+  border-radius: 4px;
+  color: #FCFCFC;
+}
+
+.player-bar {
+  border-radius: 4px;
+  color: #FCFCFC;
+}
+
+.layout-box {
+  background-repeat:   no-repeat;
+  background-size:     contain;
+}
+
+.net-box {
+  label {
+    font-size: 2em;
+  }
+}
+
+.bat-box,
+.tm-box {
+  label {
+    font-size: 2em;
+  }
+}
+
+.active {
+  color: $surface-green;
+  font-size: 2em;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+}
+
+.focus {
+  border-color: $surface-green;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 2px;
+  color: $surface-green;
+  font-size: 2em;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+}
+
+.none {
+  font-size: 2em;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+}
+
+.sep {
+  color: $surface-lightgrey;
+  font-family: Iosevka;
+  font-size: 1.75em;
+}
+
+.sundial-lbl {
+  border-radius: 0.2em;
+  font-family: "Poiret One";
+  font-size: 1em;
+  font-weight: bold;
+  padding-right: 0.5em;
+}

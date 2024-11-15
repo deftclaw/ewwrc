@@ -1,0 +1,21 @@
+#!/usr/bin/bash
+
+bars=( deftbar_m0 deftbar_m1 )
+
+function kill-bar() {
+  [[ `eww state` ]] && pkill eww &>>/tmp/eww.log
+}
+
+function start-bar() {
+  [[ `eww state` ]] || eww daemon &>>/tmp/eww.log
+
+  printf '%s\n' ${bars[@]} | xargs -I % eww open % &>>/tmp/eww.log
+}
+
+
+function restart-bar() {
+  kill-bar &>>/tmp/eww.log
+  start-bar &>>/tmp/eww.log
+}
+
+restart-bar

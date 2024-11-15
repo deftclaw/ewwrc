@@ -1,0 +1,155 @@
+(defwindow deftbar_m0
+  :exclusive true
+  :focusable false
+  :geometry ( geometry :anchor "top center" :height "3%" :width "100%" )
+  :monitor 0 ;; for Wayland
+  :stacking "fg"
+  (deftbar_layout))
+
+(defwindow deftbar_m1
+  :monitor 1 ;; for Wayland
+  :stacking "fg"
+  :focusable false
+  :exclusive true
+  :geometry ( geometry :anchor "top center" :height "1.5%" :width "100%" )
+  (deftbar_layout))
+
+(defwindow net_info
+  :exclusive false
+  :focusable false
+  :geometry ( geometry :anchor "top right" :height "6%" :width "10%" )
+  :monitor 1 ;; for Wayland
+  :stacking "overlay"
+  (net_info_layout))
+
+(defwindow power_menu
+  :exlusive false
+  :focusable true 
+  :geometry ( geometry :anchor "center" :height "7%" :width "15%" )
+  :monitor 0 ;; for Wayland
+  :stacking "fg"
+  (power_menu_layout))
+
+
+(deflisten ws1 :initial 'none' `tail -f /tmp/workspace/1`)
+(deflisten ws2 :initial 'none' `tail -f /tmp/workspace/2`)
+(deflisten ws3 :initial 'none' `tail -f /tmp/workspace/3`)
+(deflisten ws4 :initial 'none' `tail -f /tmp/workspace/4`)
+(deflisten ws5 :initial 'none' `tail -f /tmp/workspace/5`)
+(deflisten ws6 :initial 'none' `tail -f /tmp/workspace/6`)
+(deflisten ws7 :initial 'none' `tail -f /tmp/workspace/7`)
+(deflisten ws8 :initial 'none' `tail -f /tmp/workspace/8`)
+(deflisten ws9 :initial 'none' `tail -f /tmp/workspace/9`)
+(deflisten ws0 :initial 'none' `tail -f /tmp/workspace/10`)
+
+(defpoll foc :interval "0.15s"
+  :initial ``
+  `scripts/focus 92`)
+
+(defpoll net :interval "10s"
+  :initial `N/A`
+  `scripts/signal`)
+
+(defpoll time :interval "5s"
+  :initial `date +'{"hour": "%H", "min": "%M"}'`
+  `date +'{"hour": "%H", "min": "%M"}'`)
+
+
+(defwidget deftbar_layout[]
+  (centerbox :class "layout-box"
+    (box :orientation "horizontal" :halign "start" :space-evenly false
+      (box :class "left-bar" :halign "start" :space-evenly false
+        (_sundial)
+        (label :text "|" :class "sep")
+        (_clock))
+      (box :class "left-wsm-bar" :halign "start"
+        (_wsm-left :ws1 ws1 :ws2 ws2 :ws3 ws3 :ws4 ws4 :ws5 ws5))
+      (box :class "tray-bar" :halign "start"
+        (systray :icon-size "30" :orientation "horizontal" :prepend-new true)))
+    (box :class "center-bar" :halign "center" :hexpand false
+      (_active :focus foc :halign "center" :class "active"))
+    (box :orientation "horizontal" :halign "end" :space-evenly false
+      (box :class "player-bar" :halign "end")
+      (box :class "right-wsm-bar" :halign "end"
+        (_wsm-right :ws6 ws6 :ws7 ws7 :ws8 ws8 :ws9 ws9 :ws0 ws0))
+      (box :class "right-bar" :halign "end"
+        (_network :strength net :offline "󰣽" :excellent "󰣺" :good "󰣸" :okay "󰣶" :slow "󰣴")
+        (label :text "|" :class "sep")
+        (button :onclick "eww close deftbar_m0 ; eww close deftbar_m1" :class "close-btn" "󰛉")))))
+
+(defwidget net_info_layout[]
+  (box :class "net-info"
+    (label :text "Testing...")))
+
+(defwidget power_menu_layout[]
+  (box :orientation "vertical" :space-evenly true
+    (box :class "power_menu" :orientation "horizontal" :valign "baseline" :halign "fill" :hexpand true :space-evenly true
+      (button :class "pm_button" :onclick "loginctl kill-session self" "󰩈")
+      (button :class "pm_pwr_button" :onclick "poweroff" "")
+      (button :class "pm_button" :onclick "reboot" ""))
+  (box :valign "baseline" :halign "fill" :hexpand false :vexpand true :space-evenly true
+    (button :class "pm_lock-btn"  :onclick "eww close power_menu ; swaylock -S --effect-pixelate 7 &" "󰌾")
+    (button :class "pm_close-btn" :onclick "eww close power_menu" "󰛉" ))))
+
+
+(defwidget _active[focus]
+  (box :class "foc-box" :space-evenly false :spacing 20
+    (label :text focus)))
+
+(defwidget _buttons [shutdown shutdown_icon reboot reboot_icon logout logout_icon]
+  (box :class "btns-box" :spacing 5 :vexpand true :hexpand true :valign "end"
+       :halign "end" :space-evenly false
+    (button :onclick shutdown shutdown_icon)
+    (button :onclick reboot reboot_icon)
+    (button :onclick logout logout_icon)))
+
+(defwidget _clock[]
+  (label :class "clock" :halign "end"
+         :text "${time.hour} ${time.min}"))
+
+(defwidget _network [strength offline excellent good okay slow]
+  (box :class "net-box" :space-evenly false :spacing 8
+    (label :text {strength == "" ? offline :
+      strength > -26 ? slow :
+        strength > -51 ? okay :
+          strength > 76 ? good : excellent})))
+
+(defwidget _sundial []
+  (label :class "sundial-lbl" :halign "start" :hexpand true
+         :text {time.hour >= 2 && time.hour <= 4 ? "Early Morning" : 
+                time.hour <= 5 ? "Dawn" : 
+                time.hour >= 6 && (time.hour <= 8 && time.min <= 59) ? "Morning" : 
+                time.hour >= 9 && (time.hour <= 11 && time.min <= 59) ? "Late Morning" :
+                time.hour == 12 && time.min <= 29 ? "Midday" : 
+                time.hour >= 12 && time.hour <= 16 ? "Afternoon" : 
+                time.hour > 16 && time.hour <= 17 ? "Late Afternoon" :
+                (time.hour >= 17 && time.min <= 1)
+                  || (time.hour <= 18 && time.min <= 20) ? "Early Evening" :
+                time.hour >= 18 && time.hour <= 19 ? "Dusk" :
+                time.hour > 19 && time.hour <= 21 ? "Late Evening" :
+                time.hour > 21 ? "Night" : "Midnight"}))
+
+(defwidget _wsm-left [ws1 ws2 ws3 ws4 ws5]
+  (box :class "wsml-left-box" :valign "start" :space-evenly false
+    (button :onclick "hyprctl dispatch workspace 1" :class ws1 "")
+    (label :text "|" :class "sep")
+    (button :onclick "hyprctl dispatch workspace 2" :class ws2 "")
+    (label :text "|" :class "sep")
+    (button :onclick "hyprctl dispatch workspace 3" :class ws3 "")
+    (label :text "|" :class "sep")
+    (button :onclick "hyprctl dispatch workspace 4" :class ws4 "")
+    (label :text "|" :class "sep")
+    (button :onclick "hyprctl dispatch workspace 5" :class ws5 "")))
+
+(defwidget _wsm-right [ws6 ws7 ws8 ws9 ws0]
+  (box :class "wsml-left-box" :valign "start" :space-evenly false
+    (button :onclick "hyprctl dispatch workspace 6" :class ws6 "")
+    (label :text "|" :class "sep")
+    (button :onclick "hyprctl dispatch workspace 7" :class ws7 "")
+    (label :text "|" :class "sep")
+    (button :onclick "hyprctl dispatch workspace 8" :class ws8 "")
+    (label :text "|" :class "sep")
+    (button :onclick "hyprctl dispatch workspace 9" :class ws9 "")
+    (label :text "|" :class "sep")
+    (button :onclick "hyprctl dispatch workspace 10" :class ws0 "")))
+

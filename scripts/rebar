@@ -1,15 +1,16 @@
 #!/usr/bin/bash
 
-bars=( deftbar_m0 deftbar_m1 )
+bars=( 0 1 2 )
+full_eww="$HOME/.local/bin/eww"
 
 function kill-bar() {
-  [[ `eww state` ]] && pkill eww &>>/tmp/eww.log
+  [[ `$full_eww state` ]] && pkill eww &>>/tmp/eww.log
 }
 
 function start-bar() {
-  [[ `eww state` ]] || eww daemon &>>/tmp/eww.log
+  [[ `$full_eww state` ]] || $full_eww daemon &>>/tmp/eww.log
 
-  printf '%s\n' ${bars[@]} | xargs -I % eww open % &>>/tmp/eww.log
+  printf '%s\n' ${bars[@]} | xargs -I % $full_eww open deftbar_m% &>>/tmp/eww.log
 }
 
 

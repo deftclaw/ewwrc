@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+ws_dir='/tmp/workspace'
+ws_mon="$HOME/.local/etc/eww/scripts/monitor_workspaces"
+
+[[ -d "$ws_dir" ]] || mkdir "$ws_dir"
+
+bash -c "$ws_mon" &

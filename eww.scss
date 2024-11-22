@@ -163,6 +163,7 @@ $surface-green:     #26C06D;
 }
 
 .active {
+  border-width: 0;
   color: $surface-green;
   font-size: 2em;
   padding-left: 0.2em;
@@ -181,6 +182,7 @@ $surface-green:     #26C06D;
 }
 
 .none {
+  border-width: 0;
   font-size: 2em;
   padding-left: 0.2em;
   padding-right: 0.2em;

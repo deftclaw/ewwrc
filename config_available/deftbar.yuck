@@ -143,11 +143,11 @@
     (label :text "|" :class "sep")
     (button :onclick "hyprctl dispatch workspace 2" :class ws2 "")
     (label :text "|" :class "sep")
-    (button :onclick "hyprctl dispatch workspace 3" :class ws3 "")
+    (button :onclick "hyprctl dispatch workspace 3" :class ws3 "󰯊")
     (label :text "|" :class "sep")
     (button :onclick "hyprctl dispatch workspace 4" :class ws4 "")
     (label :text "|" :class "sep")
-    (button :onclick "hyprctl dispatch workspace 5" :class ws5 "")))
+    (button :onclick "hyprctl dispatch workspace 5" :class ws5 "")))
 
 (defwidget _wsm-right [ws6 ws7 ws8 ws9 ws0]
   (box :class "wsml-right-box" :valign "start" :space-evenly false

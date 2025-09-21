@@ -1,5 +1,0 @@
-#!/usr/bin/env ruby
-
-require_relative 'lambdas'
-
-puts LD[:status].call(ARGV[0])

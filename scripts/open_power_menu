@@ -2,4 +2,4 @@
 
 pms=( power_menu_0 power_menu_1 power_menu_2 )
 
-printf "%s\n" ${pms[@]} | xargs -I % /usr/local/bin/eww open %
+printf "%s\n" ${pms[@]} | xargs -I % $HOME/.local/bin/eww open %

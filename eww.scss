@@ -15,7 +15,7 @@ $surface-green:     #26C06D;
 .pm_button {
   border-radius: 0.25em;
   color: $surface-fg;
-  font-size: 3em;
+  font-size: 2em;
   padding: 0.5em;
   
   &:hover {
@@ -27,7 +27,7 @@ $surface-green:     #26C06D;
 .pm_pwr_button {
   border-radius: 0.25em;
   color: $surface-fg;
-  font-size: 3em;
+  font-size: 1em;
   padding: 0.5em;
   
   &:hover {
@@ -39,7 +39,7 @@ $surface-green:     #26C06D;
 .pm_lock-btn {
   border-radius: 0.25em;
   color: $surface-fg;
-  font-size: 3em;
+  font-size: 1em;
   padding: 0.5em;
 
   &:hover {
@@ -51,7 +51,7 @@ $surface-green:     #26C06D;
 .pm_close-btn {
   border-radius: 0.25em;
   color: $surface-fg;
-  font-size: 3em;
+  font-size: 1em;
 
   &:hover {
     background-color: $surface-lightgrey;
@@ -60,7 +60,7 @@ $surface-green:     #26C06D;
 }
 
 .btns-box {
-  font-size: 3em;
+  font-size: 1em;
 
   button {
     background-color: rgba($surface-darkgrey, 0.3);
@@ -154,7 +154,7 @@ $surface-green:     #26C06D;
 
 .net-box {
   label {
-    font-size: 2em;
+    font-size: 1em;
   }
 }
 

@@ -108,7 +108,7 @@
 (defwidget power_menu_layout[]
   (box :orientation "vertical" :space-evenly true
     (box :class "power_menu" :orientation "horizontal" :valign "baseline" :halign "fill" :hexpand true :space-evenly true
-      (button :class "pm_button" :onclick "loginctl kill-session self" "󰩈")
+      (button :class "pm_button" :onclick "scripts/logout" "󰩈")
       (button :class "pm_pwr_button" :onclick "poweroff" "")
       (button :class "pm_button" :onclick "reboot" ""))
   (box :valign "baseline" :halign "fill" :hexpand false :vexpand true :space-evenly true

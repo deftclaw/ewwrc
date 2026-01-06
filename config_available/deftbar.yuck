@@ -128,7 +128,7 @@
 
 (defwidget _clock[]
   (label :class "clock" :halign "end"
-         :text "${time.hour} ${time.min}"))
+         :text "${time.hour}:${time.min}"))
 
 (defwidget _network [strength offline excellent good okay slow]
   (box :class "net-box" :space-evenly false :spacing 8

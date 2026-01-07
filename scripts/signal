@@ -1,3 +1,14 @@
 #!/bin/bash
 
-sudo iw wlan0 link|grep 'signal:'|awk '{print $2}'
+str=`iw wlan0 link|grep 'signal:'|awk '{print $2}'`
+
+if [[ -z $str ]] 
+then
+  face=`ifconfig | grep 'eno[0-9]'`
+
+  if [[ -n "$face" ]]
+  then echo "eth" ; exit 0
+  else echo "" ; exit 0
+  fi
+else echo "$str" ; exit 0
+fi

@@ -97,7 +97,7 @@
       (box :class "right-wsm-bar" :halign "end"
         (_wsm-right :ws6 ws6 :ws7 ws7 :ws8 ws8 :ws9 ws9 :ws0 ws0))
       (box :class "right-bar" :halign "end"
-        (_network :strength net :offline "󰣽" :excellent "󰣺" :good "󰣸" :okay "󰣶" :slow "󰣴")
+        (_network :strength net :hard "󰈁" :offline "󰣽" :excellent "󰣺" :good "󰣸" :okay "󰣶" :slow "󰣴")
         (label :text "|" :class "sep")
         (button :onclick "scripts/open_power_menu" :class "close-btn" "󰐦")))))
 
@@ -130,12 +130,13 @@
   (label :class "clock" :halign "end"
          :text "${time.hour}:${time.min}"))
 
-(defwidget _network [strength offline excellent good okay slow]
+(defwidget _network [strength hard offline excellent good okay slow]
   (box :class "net-box" :space-evenly false :spacing 8
-    (label :text {strength == "" ? offline :
-      strength > -26 ? slow :
-        strength > -51 ? okay :
-          strength > -76 ? good : excellent})))
+    (label :text {strength == "eth" ? hard :
+      strength == "" ? offline :
+        strength > -26 ? slow :
+          strength > -51 ? okay :
+            strength > -76 ? good : excellent})))
 
 (defwidget _sundial []
   (label :class "sundial-lbl" :halign "start" :hexpand true

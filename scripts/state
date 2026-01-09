@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+[[ -r netstat ]] || scripts/inet
+
+ag State netstat | awk '{print $NF}'

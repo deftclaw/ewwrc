@@ -210,3 +210,29 @@ $surface-green:     #26C06D;
   font-weight: bold;
   padding-right: 0.5em;
 }
+
+.netctl {
+  background-color: rgba($surface-grey, 0.72);
+  border-radius: 10px;
+}
+
+.property {
+	color: $surface-green;
+}
+
+.tag {
+	padding-top: 0.1em;
+}
+
+.disconnected {
+	color: $surface-red;
+	font-size: 24px;
+	padding-top: 0.2em;
+}
+
+.connected {
+	color: $surface-green;
+	font-size: 24px;
+	padding-top: 0.2em;
+}
+

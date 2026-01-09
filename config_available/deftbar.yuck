@@ -54,6 +54,16 @@
   :stacking "fg"
   (power_menu_layout))
 
+(defwindow netctl [screen]
+	:class "window"
+	:geometry (geometry :anchor "top right"
+							  :height "50px"
+							  :width "200px")
+	:monitor screen
+	:windowtype "normal"
+	:wm-ignore "true"
+	(netctl_layout))
+
 
 (deflisten ws1 :initial 'none' `tail -f /tmp/workspace/1`)
 (deflisten ws2 :initial 'none' `tail -f /tmp/workspace/2`)
@@ -65,6 +75,10 @@
 (deflisten ws8 :initial 'none' `tail -f /tmp/workspace/8`)
 (deflisten ws9 :initial 'none' `tail -f /tmp/workspace/9`)
 (deflisten ws0 :initial 'none' `tail -f /tmp/workspace/10`)
+
+(defpoll ipAddr :interval "20s" `scripts/ip`)
+(defpoll ssid   :interval "20s" `scripts/ssid`)
+(defpoll state  :interval "20s" `scripts/state`)
 
 (defpoll foc :interval "0.15s"
   :initial 'echo '
@@ -101,6 +115,21 @@
         (label :text "|" :class "sep")
         (button :onclick "scripts/open_power_menu" :class "close-btn" "󰐦")))))
 
+(defwidget netctl_layout[]
+	(box :orientation "vertical"
+		  :space-evenly "true"
+		  (box :orientation "horizontal"
+				 :space-evenly "true"
+				 (button :class state :onclick "${EWW_CMD} update state=`scripts/toggle`" {state == "disconnected" ? "󰖪" : "󰖩"}))
+		  (box :class "data-row" :orientation "horizontal"
+				 :space-evenly "true"
+				 (label :class "tag" :text "IP:")
+				 (label :class "property" :text ipAddr))
+		  (box :class "data-row" :orientation "horizontal"
+				 :space-evenly "true"
+				 (label :class "tag" :geometry (geometry :anchor "left") :text "SSID:")
+				 (label :class "property" :text ssid))))
+
 (defwidget net_info_layout[]
   (box :class "net-info"
     (label :text "Testing...")))
@@ -133,7 +162,7 @@
 
 (defwidget _network [strength hard offline excellent good okay slow]
   (box :class "net-box" :space-evenly false :spacing 8
-    (label :text {strength == "eth" ? hard :
+    (button :onclick "`scripts/netctl`" {strength == "eth" ? hard :
       strength == "" ? offline :
         strength > -26 ? slow :
           strength > -51 ? okay :

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+state=`bin/state`
+
+case $state in
+	disconnected) iwctl station wlan0 connect "SkyN3t" ; echo 'connected'    ;;
+	connected) iwctl station wlan0 disconnect ; echo 'disconnected' ;;
+esac
+
+bin/inet

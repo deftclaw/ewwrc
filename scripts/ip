@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+[[ -r netstat ]] || scripts/inet
+
+ip=`ag IPv4 netstat | awk '{print $NF}'`
+
+[[ -z $ip ]] && rm netstat || echo $ip

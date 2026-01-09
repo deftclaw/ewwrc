@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+[[ `eww active-windows` =~ 'netctl' ]] && eww close netctl || eww open --arg screen=1 netctl

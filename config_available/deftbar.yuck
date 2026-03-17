@@ -137,7 +137,7 @@
 (defwidget power_menu_layout[]
   (box :orientation "vertical" :space-evenly true :class "power_menu"
     (box :valign "baseline" :halign "fill" :hexpand false :vexpand true :space-evenly true
-      (button :class "pm_lock-btn"  :onclick "scripts/close_power_menu ; swaylock -S --effect-pixelate 7 &" "󰌾")
+      (button :class "pm_lock-btn"  :onclick "scripts/close_power_menu ; hyprlock -c $XH/hypr/config.d/lock/lock.conf &" "󰌾")
       (button :class "pm_close-btn" :onclick "scripts/close_power_menu" "󰛉" ))
     (box :orientation "horizontal" :valign "baseline" :halign "fill" :hexpand true :space-evenly true
       (button :class "pm_button" :onclick "scripts/logout" "󰩈")

@@ -1,0 +1,43 @@
+(include "layout/net_menu.yuck")
+
+(defwindow net_menu_0
+	:monitor 0
+	:geometry (
+		geometry
+			:x "10px"
+			:y "5px"
+			:height "30px"
+			:anchor "top right"
+	)
+	:stacking "fg"
+	:wm-ignore "false"
+	(net_menu)
+)
+
+(defwindow net_menu_1
+	:monitor 1
+	:geometry (
+		geometry
+			:x "10px"
+			:y "5px"
+			:height "30px"
+			:anchor "top right"
+	)
+	:stacking "fg"
+	:wm-ignore "false"
+	(net_menu)
+)
+
+(defwindow net_menu_2
+	:monitor 2
+	:geometry (
+		geometry
+			:x "10px"
+			:y "5px"
+			:height "30px"
+			:anchor "top right"
+	)
+	:stacking "fg"
+	:wm-ignore "false"
+	(net_menu)
+)

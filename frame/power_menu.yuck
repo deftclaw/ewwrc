@@ -1,0 +1,25 @@
+(include "layout/power_menu.yuck")
+
+(defwindow power_menu_0
+  :exlusive false
+  :focusable false
+  :geometry ( geometry :anchor "center" :height "7%" :width "15%" )
+  :monitor 0 ;; for Wayland
+  :stacking "fg"
+  (power_menu))
+
+(defwindow power_menu_1
+  :exlusive false
+  :focusable false
+  :geometry ( geometry :anchor "center" :height "7%" :width "15%" )
+  :monitor 1 ;; for Wayland
+  :stacking "fg"
+  (power_menu))
+
+(defwindow power_menu_2
+  :exlusive false
+  :focusable false
+  :geometry ( geometry :anchor "center" :height "7%" :width "15%" )
+  :monitor 2 ;; for Wayland
+  :stacking "fg"
+  (power_menu))

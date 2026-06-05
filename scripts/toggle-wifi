@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+function __get-wiface() {
+	iwctl station list | tail -n+5 | head -n1 | awk '{print $2}'
+}
+
+function __select-net() {
+	local wiface="$1"
+
+	iwctl station $wiface scan
+	avail=(`iwctl station $wiface get-networks | tail -n+5 | awk '{print $1}'`)
+	known=(`iwctl known-networks list | tail -n+5 | awk '{print $1}'`) 
+
+	for net in ${avail[@]}
+	do
+		if [[ ${known[@]} =~ $net ]]
+		then echo "$net" ; return 0
+		fi
+	done
+
+	echo "N/a"
+	return 1
+}
+
+function main() {
+	local state=`scripts/state`
+	local wiface=`__get-wiface`
+
+	case "$state" in
+		disconnected)
+			local ssid=`__select-net`
+
+			iwctl station "$wiface" connect "$ssid" 
+			echo 'connected'
+		;;
+		connected) iwctl station "$wiface" disconnect ; echo 'disconnected' ;;
+	esac
+		
+	[ -r netstat ] && rm netstat
+	scripts/inet
+
+	unset ssid state wiface
+}
+
+main

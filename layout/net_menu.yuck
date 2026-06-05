@@ -1,0 +1,37 @@
+(include "layout/property.yuck")
+
+(defwidget net_menu[]
+	(box
+		:class "vlist"
+		:orientation "vertical"
+		:vexpand true
+		(box
+			:class "controls"
+			:halign "baseline"
+			:hexpand true
+			:orientation "horizontal"
+			(button :class status :onclick "scripts/toggle-wifi")
+		)
+		(property :tag "IP: " :value {ip ?: "N/a"})
+		(property :tag "SSID: " :value {ssid ?: "N/a"})
+	)
+)
+
+;; Watch for current IP address
+(defpoll ip
+	:initial "127.0.0.1"
+	:interval "3s"
+	`scripts/ip`
+)
+;; Watch for current ssid
+(defpoll ssid
+	:initial "N/a"
+	:interval "5s"
+	`scripts/ssid`
+)
+;; Connection status
+(defpoll status
+	:initial "disconnected"
+	:interval "5s"
+	`scripts/status`
+)

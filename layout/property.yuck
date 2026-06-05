@@ -1,0 +1,10 @@
+(defwidget property[tag value]
+	(box
+		:class "property"
+		:hexpand "true"
+		:halign "baseline"
+		:space-evenly "true"
+		(label :class "tag"   :text tag :halign "start")
+		(label :class "value" :text value :halign "end")
+	)
+)

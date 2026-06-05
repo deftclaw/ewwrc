@@ -7,6 +7,30 @@ $surface-green:     #26C06D;
 
 * { all: unset; }
 
+.vlist {
+	background-color: rgba($surface-darkgrey, 0.72);
+	border-color: $surface-green;
+	border-radius: 10px;
+	border-width: 1px;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+	padding-left: 1em;
+}
+.property {
+	color: $surface-darkgrey;
+	padding-right: 15px;
+}
+
+.tag {
+	color: $surface-fg;
+	font-weight: 700;
+}
+
+.value {
+	color: rgba($surface-fg, 0.72);
+	font-weight: 300;
+}
+
 .power_menu {
   background-color: $surface-grey;
   border-radius: 3em;
@@ -210,29 +234,3 @@ $surface-green:     #26C06D;
   font-weight: bold;
   padding-right: 0.5em;
 }
-
-.netctl {
-  background-color: rgba($surface-grey, 0.72);
-  border-radius: 10px;
-}
-
-.property {
-	color: $surface-green;
-}
-
-.tag {
-	padding-top: 0.1em;
-}
-
-.disconnected {
-	color: $surface-red;
-	font-size: 24px;
-	padding-top: 0.2em;
-}
-
-.connected {
-	color: $surface-green;
-	font-size: 24px;
-	padding-top: 0.2em;
-}
-

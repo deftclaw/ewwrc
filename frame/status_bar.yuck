@@ -1,0 +1,43 @@
+(include "layout/status.yuck")
+
+(defwindow briskbar_m0
+	:exclusive true
+	:focusable false
+	:geometry (
+		geometry
+			:anchor "top center"
+			:height "1.5%" 
+			:width "100%"
+	)
+	:monitor 0 ;; for Wayland
+	:stacking "fg"
+	(briskbar)
+)
+
+(defwindow briskbar_m1
+	:exclusive true
+	:focusable false
+	:geometry (
+		geometry
+			:anchor "top center" 
+			:height "1.5%" 
+			:width "100%"
+	)
+	:monitor 1 ;; for Wayland
+	:stacking "fg"
+	(briskbar)
+)
+
+(defwindow briskbar_m2
+	:exclusive true
+	:focusable false
+	:geometry (
+		geometry 
+			:anchor "top center" 
+			:height "1.5%" 
+			:width "100%"
+	)
+	:monitor 2 ;; for Wayland
+	:stacking "fg"
+	(briskbar)
+)

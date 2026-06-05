@@ -1,9 +1,9 @@
-# Deftclaw Eww Config  
-_Configuration and eww scripts for status bar_  
+# BriskBar  
+_Custom Status Bar made from eww_  
 
 ---  
 
-## Usage:
+![assets/sample.png](assets/sample.png)  
 
-1. Acquire:
-`git clone https://github.com/deftclaw/ewwrc $XDG_CONFIG_HOME/eww`
+__Installation:__  
+1. `git clone https://github.com/briskconfig/briskbar $XDG_CONFIG_HOME/eww`  

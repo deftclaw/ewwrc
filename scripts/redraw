@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+eww -c `pwd` close example &> eww.log
+eww -c `pwd` reload &> eww.log
+eww -c `pwd` open --arg ip="127.0.0.1" --arg ssid="CPPWindGuest" example &> eww.log

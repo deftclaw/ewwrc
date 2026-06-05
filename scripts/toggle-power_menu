@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+function __close-power_menu() {
+	local menus="$@"
+
+	printf '%s\n' ${menus[@]} |ag power_menu| xargs -I % eww close %
+
+	unset menus
+}
+
+function main() {
+	local menus=(`eww active-windows | awk '{print $NF}'`) 
+
+	if [[ ${menus[@]} =~ 'power_menu_0' ]]
+	then __close-power_menu "${menus[@]}"
+	else printf '%s\n' {0,1,2} | xargs -I % eww open power_menu_%
+	fi
+
+	unset menus
+}
+
+main

@@ -1,0 +1,13 @@
+(defwidget power_menu[]
+	(box :orientation "vertical" :space-evenly true :class "power_menu"
+		(box :orientation "horizontal" :valign "baseline" :halign "fill" :hexpand false :vexpand true :space-evenly true
+			(button :class "pm_lock-btn"  :onclick "scripts/toggle-power_menu ; swaylock -S --effect-pixelate 7 &" "󰌾")
+			(button :class "pm_close-btn" :onclick "scripts/toggle-power_menu" "󰛉" )
+		)
+		(box :orientation "horizontal" :valign "baseline" :halign "fill" :hexpand true :space-evenly true
+			(button :class "pm_button" :onclick "scripts/logout" "󰩈")
+			(button :class "pm_pwr_button" :onclick "poweroff" "")
+			(button :class "pm_button" :onclick "reboot" "")
+		)
+	)
+)

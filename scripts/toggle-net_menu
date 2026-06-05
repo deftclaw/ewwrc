@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+function __close-net_menu() {
+	local menus="$@"
+
+	printf '%s\n' ${menus[@]} |ag net_menu| xargs -I % eww close % &>/dev/null
+
+	unset menus
+}
+
+function main() {
+	local menus=(`eww active-windows | awk '{print $NF}'`) 
+
+	if [[ ${menus[@]} =~ 'net_menu_0' ]]
+	then __close-net_menu "${menus[@]}"
+	else printf '%s\n' {0,1,2} | xargs -I % eww open net_menu_% &>/dev/null
+	fi
+
+	unset menus
+}
+
+main
